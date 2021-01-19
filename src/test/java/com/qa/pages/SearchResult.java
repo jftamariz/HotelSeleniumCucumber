@@ -1,7 +1,5 @@
 package com.qa.pages;
 
-
-
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,14 +10,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
+import com.qa.util.World;
+
 
 public class SearchResult extends PageBase{
 
     private By regionResultList = By.id("resultsContainer");
     private By overlaySpinner = By.xpath("//div[@class='opi-overlay']");   //  while updating results
 
-    public SearchResult(WebDriver driver){
-        super(driver);
+    public SearchResult(World world){
+        super(world);
         waitForElement(regionResultList, 5);
     }
 
@@ -30,7 +30,7 @@ public class SearchResult extends PageBase{
 
     public ChooseRoom selectRowHotelByIndex(int row){
         getSearchResultList().get(row).click();
-        return new ChooseRoom(driver);
+        return new ChooseRoom(world);
     }
 
     public List<Map<String,String>> readHotelInformationRows(){

@@ -9,14 +9,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.JavascriptExecutor;
+import com.qa.util.World;
+
 
 public class PackagesFlights extends PageBase{
 
     private By btnFlightHotel = By.id("tab-package-tab-hp");
     private By inputAirportCity = By.id("package-origin-hp-package");
 
-    public PackagesFlights(WebDriver driver){
-        super(driver);
+    public PackagesFlights(World world){
+        super(world);
         waitForElement(btnFlightHotel, 5);
     }
 
@@ -89,6 +91,6 @@ public class PackagesFlights extends PageBase{
     public SearchResult clickSearch(){
         getElement(By.id("search-button-hp-package")).click();
         waitForElementDisappear(By.id("interstitial-message"), 40);
-        return new SearchResult(driver);
+        return new SearchResult(world);
     }
 }

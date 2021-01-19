@@ -12,15 +12,15 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import com.qa.util.World;
 
-
-
-public abstract class PageBase{
+public class PageBase{
     protected WebDriver driver;
+    protected World world;
 
-
-    public PageBase(WebDriver driver) {
-        this.driver = driver;
+    public PageBase(World world) {
+        this.world = world;
+        this.driver = world.driver;
     }
 
 

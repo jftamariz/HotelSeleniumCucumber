@@ -4,15 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
-
+import com.qa.util.World;
 import java.util.Iterator; 
 import java.util.Set; 
 
 public class Home extends PageBase{
 
 
-    public Home(WebDriver driver){
-        super(driver);
+    public Home(World world){
+        super(world);
         if(!driver.getCurrentUrl().equalsIgnoreCase(("https://www.hotels.com/"))){
             loadPage();
         }
@@ -39,6 +39,6 @@ public class Home extends PageBase{
             }
         }
 
-        return new PackagesFlights(driver);
+        return new PackagesFlights(world);
     }
 }

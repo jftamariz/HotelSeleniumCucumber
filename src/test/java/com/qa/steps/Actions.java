@@ -11,6 +11,7 @@ import org.testng.Assert;
 
 import com.qa.util.Browser;
 import com.qa.util.DriverFactory;
+import com.qa.util.World;
 import com.qa.drivers.DriverManager;
 import com.qa.pages.Home;
 import com.qa.pages.PackagesFlights;
@@ -24,19 +25,23 @@ import java.util.Map;
 
 public class Actions{
 
-    Browser browser = Browser.CHROME;
-    DriverManager driverManager;
-    WebDriver wd;
+
+    //DriverManager driverManager;
+
     Home home;
     PackagesFlights packagesFlights;
     SearchResult searchResults;
+    private WebDriver driver;
+    private World world;
 
+    public Actions(World world){
+        this.world = world;
+        this.driver = world.driver;
+    }
 
     @Given("^user launches Hotel.com$")
     public void launchBrowser(){
-        driverManager = DriverFactory.setDriver(browser);
-        wd = driverManager.getDriver();
-        home = new Home(wd);
+        home = new Home(world);
     }
 
     @And("^navigate to Packages and Flights$")
