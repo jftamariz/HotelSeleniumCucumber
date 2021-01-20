@@ -6,11 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class FirefoxDriverManager extends DriverManager {
-    /*
-    @Override
-    protected void setSystemProperties() {
-        System.setProperty("webdriver.gecko.driver", pathDir+"/src/test/resources/geckodriver");
-    }*/
+
 
     @Override
     protected void createDriverLocal() {

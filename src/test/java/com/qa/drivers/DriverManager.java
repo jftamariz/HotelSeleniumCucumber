@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public abstract class DriverManager {
 
     protected WebDriver driver;
-    //protected abstract void setSystemProperties();
+
     protected abstract void createDriverLocal();
     protected abstract void createDriverRemote(String ipAddress, String port);
 
@@ -14,9 +14,9 @@ public abstract class DriverManager {
 
     public WebDriver getDriver(){
         if(null == driver){
-            //setSystemProperties();
+
             createDriverLocal();
-            //createDriverRemote(env);
+     
         }
 
         return driver;
