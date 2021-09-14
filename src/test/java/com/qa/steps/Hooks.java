@@ -20,7 +20,7 @@ public class Hooks {
     @After
 	public void teardown() {
 		System.out.println("Close browser");
-		driver.quit();
+		//driver.quit();
 	}
 
 }

@@ -9,15 +9,12 @@ Feature: Hotel and flight user search
     Given user launches Hotel.com
     And navigate to Packages and Flights
     Then the links in the top banner should be displayed
-    | Links              |
-    | Hotels             |
-    | Hotel Deals        |
-    | Packages & Flights |
-    | Things to Do       |
+      | Flights      |
+      | Things to Do |
 
     When user searches for a Flight and Hotel Packages
-    | Origin City    | Destination City | Departing Date | Returning Date | Travelers | Rooms | Airline Class |  
-    | Washington, DC | Miami            | 02/01/2021     | 02/05/2021     | 2         | 1     | Business      |
+      | Origin City    | Destination City | Departing Date | Returning Date | Travelers | Rooms | Airline Class |
+      | Washington, DC | Miami            | 1              | 6              | 2         | 1     | Business      |
 
     And the Property Class filter is selected for 4 stars
     And the Neighborhood filter is set to Miami

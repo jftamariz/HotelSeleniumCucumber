@@ -67,8 +67,7 @@ public class Actions{
 
         packagesFlights.writeCityOrAirport(mapData.get(0).get("Origin City"));
         packagesFlights.writeDestination(mapData.get(0).get("Destination City"));
-        packagesFlights.writeDepartureDate(mapData.get(0).get("Departing Date"));
-        packagesFlights.writeReturnDate(mapData.get(0).get("Returning Date"));
+        packagesFlights.writeDepartureandReturnDatesForNextMonth( mapData.get(0).get("Departing Date"), mapData.get(0).get("Returning Date"));
         packagesFlights.writeNumberOfTravelers(mapData.get(0).get("Airline Class"));
 
         searchResults = packagesFlights.clickSearch();

@@ -14,20 +14,22 @@ public class Home extends PageBase{
     public Home(World world){
         super(world);
         if(!driver.getCurrentUrl().equalsIgnoreCase(("https://www.hotels.com/"))){
-            loadPage();
+            driver.get("https://www.hotels.com/");
         }
-        waitForElement(By.id("qf-0q-destination"));
+        waitForElement(By.name("q-destination"));
     }
 
-    public void loadPage(){
+    /*public void loadPage(){
         driver.get("https://www.hotels.com/");
-    }
+    }*/
 
 
     public PackagesFlights goPackagesFlights(){
 
-        getElement(By.id("hdr-packages")).click();
-        
+        getElement(By.linkText("Packages & Flights")).click();
+        waitForElement(By.linkText("Packages")).click();
+
+        /*
         String parent=driver.getWindowHandle();
         Set<String> allWindowHandles = driver.getWindowHandles();
 
@@ -37,7 +39,7 @@ public class Home extends PageBase{
             if(!parent.equals(childWindow)){
                 driver.switchTo().window(childWindow);
             }
-        }
+        }*/
 
         return new PackagesFlights(world);
     }

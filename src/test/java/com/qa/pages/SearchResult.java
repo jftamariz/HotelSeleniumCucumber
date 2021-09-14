@@ -20,7 +20,7 @@ public class SearchResult extends PageBase{
 
     public SearchResult(World world){
         super(world);
-        waitForElement(regionResultList, 5);
+        waitForElement(regionResultList, 15);
     }
 
 
@@ -46,7 +46,7 @@ public class SearchResult extends PageBase{
             return null;
         }
     
-    
+        goSleep(1);
         String discountedPrice = "";
         String actualPrice = "";
         String neighborhood = "";
@@ -60,9 +60,9 @@ public class SearchResult extends PageBase{
                 actualPrice = "";
             }
             
-            isRoomDiscount = getElement(By.xpath("//article["+(i+1)+"]//ul[@class='hotel-price']//li[@class='price ']"));
+            isRoomDiscount = getElement(By.xpath("//article["+(i+1)+"]//ul[@class='hotel-price']//li[contains(@class, 'price ')]"));
             if(isRoomDiscount != null){
-                discountedPrice = getElement(By.xpath("//article["+(i+1)+"]//ul[@class='hotel-price']//li[@class='price ']/a")).getText().replaceAll("[\\$,]","").split("\n")[0];
+                discountedPrice = getElement(By.xpath("//article["+(i+1)+"]//ul[@class='hotel-price']//li[contains(@class, 'price ')]")).getText().replaceAll("[\\$,]","").split("\n")[0];
                 //System.out.println(Integer.toString(i)+"  -  "+ getElement(rows.get(i), By.xpath("h3")).getText()+" - Discounted: " +discountedPrice+" - "+actualPrice);
             }else{
                 discountedPrice = "";
@@ -71,7 +71,7 @@ public class SearchResult extends PageBase{
             neighborhood = getElement(By.xpath("//article["+(i+1)+"]//li[@class='neighborhood secondary ']")).getText();
        
             hotelInfo =  new HashMap<>();
-            hotelInfo.put("name", getElement(rows.get(i), By.xpath("h3")).getText());
+            hotelInfo.put("name", getElement(rows.get(i), By.xpath("//h4[@data-automation='hotel-name']")).getText());
             hotelInfo.put("actualPrice", actualPrice);
             hotelInfo.put("actualPrice", discountedPrice);
             hotelInfo.put("neighborhood", neighborhood);
@@ -104,6 +104,7 @@ public class SearchResult extends PageBase{
        
 
         long startTime = System.currentTimeMillis();
+        waitForElement(overlaySpinner, 2);
         waitForElementDisappear(overlaySpinner , 9);
         long endTime = System.currentTimeMillis();
         System.out.println("Wait for Overlay to Disappear: " + (endTime - startTime) + " milliseconds\n");
@@ -124,7 +125,7 @@ public class SearchResult extends PageBase{
             .get()
             .click();
         waitForElement(overlaySpinner, 3);
-        waitForElementDisappear(overlaySpinner, 9);
+        waitForElementDisappear(overlaySpinner, 15);
 
     }
 }

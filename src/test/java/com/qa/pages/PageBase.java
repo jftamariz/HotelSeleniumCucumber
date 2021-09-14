@@ -28,7 +28,6 @@ public class PageBase{
         try{
             return driver.findElement(findElementBy);
         }catch(NoSuchElementException e){
-      
             System.out.println(" [Error] - Return NULL - NoSuchElementException in getElement: "+ findElementBy.toString());
             return null;
         }
@@ -37,11 +36,8 @@ public class PageBase{
     public WebElement getElement(WebElement element, By findElementBy){
         try{
             return element.findElement(findElementBy);
-
         }catch(NoSuchElementException e){
-        
             System.out.println(" [Error] - Return NULL - NoSuchElementException in getElement: "+ findElementBy.toString());
-            
             return null;
         }
     }
@@ -57,7 +53,6 @@ public class PageBase{
             System.out.println(" [Warn] - Timeout exception in class "+getClass().getName()+" --> waitForElement() for locator: " + findElementBy.toString());
             return null;
         }
-
     }
     public WebElement waitForElementClickable(WebElement element, By findElementBy, int timeout){
         try{
