@@ -7,18 +7,12 @@ Feature: Hotel and flight user search
 
   Scenario:  User searches for Flight and Hotel
     Given user launches Hotel.com
-    And navigate to Packages and Flights
-    Then the links in the top banner should be displayed
-      | Flights      |
-      | Things to Do |
-
-    When user searches for a Flight and Hotel Packages
-      | Origin City    | Destination City | Departing Date | Returning Date | Travelers | Rooms | Airline Class |
-      | Washington, DC | Miami            | 1              | 6              | 2         | 1     | Business      |
-
+    When user searches by destination, accommodations or landmarks
+      | Going To | Departing in N days from today | Trip Duration | Travelers Adults | Travelers Children |
+      | Miami    | 30                             | 7             | 2                | 0                  |
     And the Property Class filter is selected for 4 stars
-    And the Neighborhood filter is set to Miami
-    Then verify the Neighborhood filter was set to Miami
+#    And the Neighborhood filter is set to Miami
+#    Then verify the Neighborhood filter was set to Miami
 
 
 

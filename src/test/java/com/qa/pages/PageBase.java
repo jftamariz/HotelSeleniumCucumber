@@ -1,16 +1,8 @@
 package com.qa.pages;
 
 import java.util.List;
-import java.util.Map.Entry;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.qa.util.World;
 
@@ -111,8 +103,6 @@ public class PageBase{
     }
 
 
-
-
     public void goSleep(int secs){
         try {
             Thread.sleep(secs*1000);
@@ -121,4 +111,8 @@ public class PageBase{
         }
     }
 
+    public void scrolltoElement(WebElement element){
+        JavascriptExecutor je = (JavascriptExecutor) driver;
+        je.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
 }

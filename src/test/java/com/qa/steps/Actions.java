@@ -1,32 +1,21 @@
 package com.qa.steps;
 
-import org.openqa.selenium.WebDriver;
-
+import com.qa.pages.Home;
+import com.qa.pages.PackagesFlights;
+import com.qa.pages.SearchResult;
+import com.qa.util.World;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
-
-import com.qa.util.Browser;
-import com.qa.util.DriverFactory;
-import com.qa.util.World;
-import com.qa.drivers.DriverManager;
-import com.qa.pages.Home;
-import com.qa.pages.PackagesFlights;
-import com.qa.pages.SearchResult;
- 
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 
 public class Actions{
-
-
-    //DriverManager driverManager;
 
     Home home;
     PackagesFlights packagesFlights;
@@ -73,10 +62,19 @@ public class Actions{
         searchResults = packagesFlights.clickSearch();
     }
 
+    @When("^user searches by destination, accommodations or landmarks$")
+    public void searchByDestination(DataTable table) throws Exception{
+        List<Map<String, String>> mapData =  table.asMaps();
+        home.writeGoingToDestination(mapData.get(0).get("Going To"));
+        home.writeDestinationDates(42, 5);
+        searchResults = home.clickSearch();
+    }
+
     @And("^the Property Class filter is selected for (.*) stars$")
     public void setPropertyClassFilter(String stars){
       
         searchResults.selectPropertyClassByStarNumber(Integer.parseInt(stars));
+        home.goSleep(6);
     }
 
     @And("^the Neighborhood filter is set to (.*)$")
@@ -90,14 +88,4 @@ public class Actions{
         List<Map<String,String>> rowsHotel = searchResults.readHotelInformationRows();
         Assert.assertTrue(rowsHotel.get(0).get("neighborhood").contains(neighborhood));
     }
-
-    public void goSleep(int secs){
-        try {
-            Thread.sleep(secs*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

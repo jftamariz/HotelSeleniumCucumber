@@ -4,7 +4,7 @@ package com.qa.util;
 import org.openqa.selenium.WebDriver;
 import com.qa.util.DriverFactory;
 import com.qa.drivers.DriverManager;
-import com.qa.util.Browser;
+import java.time.LocalDate;
 
 
 public class World{
@@ -20,5 +20,17 @@ public class World{
         driver = driverManager.getDriver();
     }
 
+    public int getDayOfTheMonth(){
+        LocalDate currentdate = LocalDate.now();
+        return currentdate.getDayOfMonth();
+    }
 
+    public String getMonthOfTheYear(){
+        LocalDate currentdate = LocalDate.now();
+        return currentdate.getMonth().toString();
+    }
+
+    public LocalDate getDatePlushDays(int plusDays){
+        return LocalDate.now().plusDays(plusDays);
+    }
 }

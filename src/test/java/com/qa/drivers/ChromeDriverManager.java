@@ -17,7 +17,7 @@ public class ChromeDriverManager extends DriverManager{
     @Override
     protected void createDriverLocal() {
         
-        System.setProperty("webdriver.chrome.driver", pathDir+"/src/test/resources/chromedriver92");
+        System.setProperty("webdriver.chrome.driver", pathDir+"/src/test/resources/chromedriver_129");
         driver = new ChromeDriver();
     }
 

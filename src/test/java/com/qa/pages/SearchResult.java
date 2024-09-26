@@ -1,28 +1,25 @@
 package com.qa.pages;
-
+import com.qa.util.World;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-import com.qa.util.World;
 
 
 public class SearchResult extends PageBase{
 
     private By regionResultList = By.id("resultsContainer");
     private By overlaySpinner = By.xpath("//div[@class='opi-overlay']");   //  while updating results
+    private By sectionResults = By.cssSelector("[data-stid='section-results']");
 
     public SearchResult(World world){
         super(world);
-        waitForElement(regionResultList, 15);
+        waitForElement(sectionResults, 30);
     }
-
 
     public List<WebElement> getSearchResultList(){
         return getElements(By.xpath("//div[@id='resultsContainer']/section/article"));
@@ -83,7 +80,6 @@ public class SearchResult extends PageBase{
     }
 
 
- 
     public void selectSortyBy(String sortBy){
         List<WebElement> sortBarItems = getElements(By.xpath("//ul[@class='sort-options nobullet']/li[@class='option']/button"));
  
@@ -99,10 +95,19 @@ public class SearchResult extends PageBase{
     }
 
     public void selectPropertyClassByStarNumber(int stars){
-        String locatorStars = "star"+Integer.toString(stars);
-        waitForElement(By.id(locatorStars)).click();
-       
+        String locatorStars = "ShoppingSelectableFilterOption-star-"+Integer.toString(stars)+"0";
 
+        // Open All Filters, click on pill
+        waitForElement(By.id("all-filters-pill"), 3).click();
+        waitForElement(By.id("search_form_tertiary_button"), 2);
+
+        // Within the dialog, move to starts buttons and click on the star
+        WebElement fourStarButton = waitForElement(By.xpath("//label[@for='"+locatorStars+"']"));
+        new Actions(driver).moveToElement(fourStarButton).perform();
+        fourStarButton.click();
+        waitForElement(By.xpath("//div[@id='app-layer-ShoppingSortAndFilters-FILTER_BAR']//button[contains(@class, 'uitk-button-primary')]")).click();
+
+        // Wait for Loader to disappear
         long startTime = System.currentTimeMillis();
         waitForElement(overlaySpinner, 2);
         waitForElementDisappear(overlaySpinner , 9);
