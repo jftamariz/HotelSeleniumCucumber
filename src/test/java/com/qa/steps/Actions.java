@@ -54,7 +54,7 @@ public class Actions{
 
         List<Map<String, String>> mapData =  table.asMaps();
 
-        packagesFlights.writeCityOrAirport(mapData.get(0).get("Origin City"));
+        // packagesFlights.writeCityOrAirport(mapData.get(0).get("Origin City"));
         packagesFlights.writeDestination(mapData.get(0).get("Destination City"));
         packagesFlights.writeDepartureandReturnDatesForNextMonth( mapData.get(0).get("Departing Date"), mapData.get(0).get("Returning Date"));
         packagesFlights.writeNumberOfTravelers(mapData.get(0).get("Airline Class"));

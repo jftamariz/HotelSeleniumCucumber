@@ -15,8 +15,8 @@ public abstract class DriverManager {
     public WebDriver getDriver(){
         if(null == driver){
 
-            createDriverLocal();
-     
+            // createDriverLocal();
+            createDriverRemote("localhost", "4444");
         }
 
         return driver;

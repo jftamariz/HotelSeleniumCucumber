@@ -59,16 +59,16 @@ public class PackagesFlights extends PageBase{
     
     public void writeDestination(String destination){
 
-        // click on the 'Going to' btn to expand input field
-        waitForElement(By.xpath("//button[@aria-label='Going to']")).click();
+        // click on the 'Where to' btn to expand input field
+        waitForElement(By.xpath("//button[@aria-label='Where to']")).click();
 
         // wait for input field
-        WebElement inputDestination = waitForElement(By.id("location-field-destination"));
+        WebElement inputDestination = waitForElement(By.id("destination_form_field"));
         inputDestination.clear();
         inputDestination.sendKeys(destination);
 
         goSleep(1);
-        waitForElement(By.xpath("//ul[@data-stid='location-field-destination-results']"));
+//        waitForElement(By.xpath("//ul[@data-stid='location-field-destination-results']"));
 
         // pick the second item result from pop-up result list
         getElements(By.xpath("//li[@data-stid='location-field-destination-result-item']")).get(1).findElement(By.xpath(".//button/div")).click();
